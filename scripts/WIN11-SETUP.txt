@@ -1,0 +1,30 @@
+Windows 11 Setup — Secure Boot / TPM blocked
+============================================
+
+On the error screen ("must support Secure Boot"):
+
+1. Press:  Shift + F10
+2. Black Command Prompt opens. Type EXACTLY these 3 lines (Enter after each):
+
+reg add "HKLM\SYSTEM\Setup\LabConfig" /f
+reg add "HKLM\SYSTEM\Setup\LabConfig" /v BypassSecureBootCheck /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\Setup\LabConfig" /v BypassTPMCheck /t REG_DWORD /d 1 /f
+
+3. Optional (if it still complains about CPU/RAM):
+
+reg add "HKLM\SYSTEM\Setup\LabConfig" /v BypassCPUCheck /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\Setup\LabConfig" /v BypassRAMCheck /t REG_DWORD /d 1 /f
+
+4. Type: exit
+5. Click Back on the Setup window, then Continue again.
+
+Do NOT look for a LabConfig "option B" menu — it is a registry KEY you create.
+
+Host (Kali) — use MS Secure Boot firmware:
+  sudo apt install -y ovmf swtpm
+  ls /usr/share/OVMF/*ms* /usr/share/OVMF/*secboot*
+
+Reset UEFI vars for a VM (OmniBox closed):
+  find ~/.local/share/dev.omnibox.desktop/machines -name 'uefi-vars*.fd' -delete
+
+Then Start the Windows VM again from OmniBox.

@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+; Import inside Windows 11 Setup (Shift+F10 → regedit → File → Import)
+; Or run from Shift+F10 cmd:
+;   reg import D:\win11-labconfig-bypass.reg
+; (if you attached this file as a second ISO/floppy — easier: use reg add commands below)
+
+[HKEY_LOCAL_MACHINE\SYSTEM\Setup\LabConfig]
+"BypassSecureBootCheck"=dword:00000001
+"BypassTPMCheck"=dword:00000001
+"BypassRAMCheck"=dword:00000001
+"BypassCPUCheck"=dword:00000001
+"BypassStorageCheck"=dword:00000001

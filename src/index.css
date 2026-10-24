@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body {
+  @apply text-fog-100 font-sans antialiased;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(77, 141, 255, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(167, 139, 250, 0.12), transparent 50%),
+    radial-gradient(800px 400px at 50% 100%, rgba(34, 211, 238, 0.06), transparent 45%),
+    #060b18;
+}
+input, select { user-select: text; }
+:focus-visible { outline: 2px solid #4d8dff; outline-offset: 2px; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1e3058, #162445);
+  border-radius: 8px;
+  border: 2px solid #060b18;
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-ink-600/80 bg-ink-900/80 shadow-card backdrop-blur-sm;
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:border-signal/40 hover:shadow-glow hover:-translate-y-0.5;
+  }
+  .nav-item {
+    @apply flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm text-fog-300 transition-colors;
+  }
+  .nav-item-active {
+    @apply bg-signal/15 text-fog-100 shadow-[inset_3px_0_0_0_#4d8dff];
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+}
